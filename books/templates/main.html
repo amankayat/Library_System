@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{%  block title %} Library {% endblock title %}
+
+{% block body %} 
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+          <h2 class="text-center alert alert-info"> ADD BOOKS</h2>
+            <form action="{% url 'main' %}" method="POST" novalidate>
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="ADD BOOK" class="btn btn-primary">
+            </form>
+        </div>
+        <div class="col-sm-7 offset-1">
+            <h2 class="text-center alert alert-info"> List of Books</h2>
+            {% if data %}
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">NAME</th>
+                    <th scope="col">AUTHOR</th>
+                    <th scope="col">PUB.YEAR</th>
+                    <th scope="col">ACTION</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for stu in data %}
+                    
+                    <tr>
+                        
+                        <td>{{stu.id}}</td>
+                        <td>{{stu.name}}</td>
+                        <td>{{stu.author}}</td>
+                        <td>{{stu.year}}</td>
+                        <td>
+                          <a href="{% url 'update_data' stu.id %}"><input type="button" value="Edit" class="btn btn-warning"></a>
+                          <a href="{% url 'delete_data' stu.id %}"><input type="button" value="delete" class="btn btn-success"></a>
+                        </td>
+
+                      </tr>
+                     
+                      {% endfor %}
+                      {% else %}
+                      <h3 class="text-center alert alert-info">NO RECORD FOUND!!</h3>
+                    {% endif %}
+                  
+
+
+
+                
+                
+                  
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock body %}

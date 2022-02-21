@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{%  block title %} Update {% endblock title %}
+
+{% block body %} 
+
+<div class="container">
+    <div class="row">
+      
+        <div class="col-sm-8 offset-2">
+            <h2 class="text-center alert alert-info"> UPDATE BOOKS</h2>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" name="" id="" class="btn btn-primary" value="UPDATE">
+                <a href="{% url 'main' %}" class="btn btn-primary">Back to home</a>
+        
+            </form>
+        </div>
+    </div>
+  
+</div>
+
+{% endblock body %}
